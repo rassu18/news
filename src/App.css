@@ -1,0 +1,14 @@
+/* src/App.css */
+.App {
+  text-align: center;
+}
+
+.news-box {
+  border: 1px solid #ddd;
+  padding: 16px;
+  margin: 16px;
+}
+
+a {
+  color: #007bff;
+}
