@@ -7,6 +7,7 @@ const News = () => {
   const [newsData, setNewsData] = useState({});
   const [selectedLanguage, setSelectedLanguage] = useState('en'); // Default language is English
   const [selectedCategory, setSelectedCategory] = useState('general'); // Default category is General
+  let response = '';
 
   const debouncedLanguageChange = useMemo(() => {
     const debounce = (fn, delay) => {
@@ -36,9 +37,17 @@ const News = () => {
     const fetchNews = async () => {
       try {
         const apiKey = 'q0uUJXqXuSu1OP4CRJDAdV5w9umpi9U6Oko4uTFxK6BVreek';
-        const response = await axios.get(
+
+        if(selectedCategory === 'science'){
+          response = await axios.get(
+            `https://news-api-5wv3.onrender.com/news`
+          );
+        }else{
+
+        response = await axios.get(
           `https://api.currentsapi.services/v1/latest-news?apiKey=${apiKey}&language=${selectedLanguage}&country=in&category=${selectedCategory}`
         );
+        }
 
         if (!cancelRequest) {
           const groupedNews = {};
