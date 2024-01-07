@@ -38,7 +38,7 @@ const News = () => {
       try {
         const apiKey = 'q0uUJXqXuSu1OP4CRJDAdV5w9umpi9U6Oko4uTFxK6BVreek';
 
-        if(selectedCategory === 'science'){
+        if(selectedCategory === 'sports'){
           response = await axios.get(
             `https://news-api-5wv3.onrender.com/news`
           );
