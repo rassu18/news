@@ -41,6 +41,10 @@
     padding: 15px;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 0 0 5px 5px;
+      img{
+			height: 25vh;
+			width: 50vh;
+         } 
   }
   
   .news-header {
@@ -99,5 +103,13 @@
       width: 100%;
       padding-top: 100%;
     }
+
+  .news-content {
+
+      img{
+			height: 14vh;
+			width: 35vh;
+         } 
+  } 
   }
   
