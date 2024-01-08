@@ -1,3 +1,5 @@
+// News.js
+
 import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import './News.css';
@@ -5,8 +7,9 @@ import defaultImage from '../logo.svg';
 
 const News = () => {
   const [newsData, setNewsData] = useState({});
-  const [selectedLanguage, setSelectedLanguage] = useState('en'); // Default language is English
-  const [selectedCategory, setSelectedCategory] = useState('Top Headlines'); // Default category is General
+  const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const [selectedCategory, setSelectedCategory] = useState('Top Headlines');
+  const [loading, setLoading] = useState(false); // New state for loader
   let response = '';
 
   const debouncedLanguageChange = useMemo(() => {
@@ -20,7 +23,7 @@ const News = () => {
 
     return debounce((value) => {
       setSelectedLanguage(value);
-    }, 300); // Adjust the debounce delay as needed
+    }, 300);
   }, []);
 
   const handleLanguageChange = (event) => {
@@ -36,21 +39,22 @@ const News = () => {
 
     const fetchNews = async () => {
       try {
+        setLoading(true); // Set loading to true when service call starts
+
         const apiKey = 'q0uUJXqXuSu1OP4CRJDAdV5w9umpi9U6Oko4uTFxK6BVreek';
 
-        if(selectedCategory === 'sports'){
+        if (selectedCategory === 'sports') {
           response = await axios.get(
             `https://news-api-5wv3.onrender.com/sports`
           );
-        }else if(selectedCategory === 'Top Headlines'){
+        } else if (selectedCategory === 'Top Headlines') {
           response = await axios.get(
             'https://news-api-5wv3.onrender.com/news/national'
           );
-        }
-        else{
-        response = await axios.get(
-          `https://api.currentsapi.services/v1/latest-news?apiKey=${apiKey}&language=${selectedLanguage}&country=in&category=${selectedCategory}`
-        );
+        } else {
+          response = await axios.get(
+            `https://api.currentsapi.services/v1/latest-news?apiKey=${apiKey}&language=${selectedLanguage}&country=in&category=${selectedCategory}`
+          );
         }
 
         if (!cancelRequest) {
@@ -67,6 +71,8 @@ const News = () => {
         }
       } catch (error) {
         console.error('Error fetching news:', error);
+      } finally {
+        setLoading(false); // Set loading to false when service call completes
       }
     };
 
@@ -77,7 +83,15 @@ const News = () => {
     };
   }, [selectedLanguage, selectedCategory]);
 
-  const categories = ['Top Headlines', 'business', 'entertainment', 'health', 'science', 'sports', 'technology'];
+  const categories = [
+    'Top Headlines',
+    'business',
+    'entertainment',
+    'health',
+    'science',
+    'sports',
+    'technology',
+  ];
 
   return (
     <div className="container">
@@ -104,26 +118,26 @@ const News = () => {
         </label>
         {/* Add more radio options as needed */}
       </div>
-      {/* <div className="category-select">
-        <label>
-          Select Category:
-          <select value={selectedCategory} onChange={handleCategoryChange}>
-            {categories.map((category) => (
-              <option key={category} value={category}>
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div> */}
       <div className="news-header">
         {categories.map((category) => (
-          <div key={category} className={`header-category ${selectedCategory === category ? 'active' : ''}`} onClick={() => setSelectedCategory(category)}>
+          <div
+            key={category}
+            className={`header-category ${
+              selectedCategory === category ? 'active' : ''
+            }`}
+            onClick={() => setSelectedCategory(category)}
+          >
             {category.charAt(0).toUpperCase() + category.slice(1)}
           </div>
         ))}
       </div>
+      {loading && (
+        <div className="loader-overlay">
+          <div className="loader"></div>
+        </div>
+      )}
       <div className="news-container">
+         {/* Display loader if loading is true */}
         {Object.keys(newsData).map((source, index) => (
           <React.Fragment key={index}>
             {newsData[source].map((article, articleIndex) => (
@@ -147,9 +161,11 @@ const News = () => {
                     />
                   )}
                   <h3>{article.title}</h3>
-                  <p>{article.description? article.description:article.summary}</p>
+                  <p>
+                    {article.description ? article.description : article.summary}
+                  </p>
                   <a
-                    href={article.url?article.url:article.link}
+                    href={article.url ? article.url : article.link}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -164,5 +180,12 @@ const News = () => {
     </div>
   );
 };
+
+// Loader component
+const Loader = () => (
+  <div className="loader-container">
+    <div className="loader"></div>
+  </div>
+);
 
 export default News;
