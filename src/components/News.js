@@ -40,7 +40,7 @@ const News = () => {
 
         if(selectedCategory === 'sports'){
           response = await axios.get(
-            `https://news-api-5wv3.onrender.com/news`
+            `https://news-api-5wv3.onrender.com/sports`
           );
         }else{
         response = await axios.get(
