@@ -46,6 +46,7 @@ h1 {
   background-color: #fff;
 }
 
+
 .news-content {
   position: absolute;
 
@@ -70,39 +71,58 @@ h1 {
 
 .news-header {
   display: flex;
-
   justify-content: center;
-
   align-items: center;
-
   margin-bottom: 20px;
-
   margin-top: 30px;
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)); /* Darker gradient for enhanced shine */
+  padding: 10px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Increased box shadow for depth */
 }
+
+/* Updated Header Category Styles */
 
 .header-category {
-  padding: 10px;
-
-  border: 1px solid #ddd;
-
-  border-radius: 5px;
-
+  position: relative; /* Position relative for ::after pseudo-element */
+  padding: 12px 20px;
   cursor: pointer;
-
-  transition: background-color 1.3s, color 0.3s;
-
+  transition: background-color 0.3s, color 0.3s;
   margin-right: 15px;
-  /* Add transition effect */
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: transparent;
 }
 
-.header-category:hover {
-  background-color: #f1f1f1;
+.header-category::after {
+  content: '|'; /* Pipe character as a divider */
+  position: absolute;
+  top: 50%;
+  right: -5px; /* Adjust the spacing */
+  transform: translateY(-50%);
+  color: #fff; /* Color of the pipe */
 }
 
+.header-category:last-child::after {
+  content: none; /* Remove the pipe after the last category */
+}
+
+.header-category:hover,
+.header-category.active {
+  background-color: #333; /* Darker background on hover and when active */
+}
 .header-category.active {
   background-color: #007bff;
-
   color: #fff;
+  border-color: #007bff;
+}
+
+.news-content a {
+  color: #007bff; /* Link color */
+}
+
+.news-content a:hover {
+  color: #0056b3; /* Darker link color on hover for better contrast */
 }
 
 .hamburger-menu {
