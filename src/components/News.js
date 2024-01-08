@@ -6,7 +6,7 @@ import defaultImage from '../logo.svg';
 const News = () => {
   const [newsData, setNewsData] = useState({});
   const [selectedLanguage, setSelectedLanguage] = useState('en'); // Default language is English
-  const [selectedCategory, setSelectedCategory] = useState('general'); // Default category is General
+  const [selectedCategory, setSelectedCategory] = useState('Top Headlines'); // Default category is General
   let response = '';
 
   const debouncedLanguageChange = useMemo(() => {
@@ -42,7 +42,12 @@ const News = () => {
           response = await axios.get(
             `https://news-api-5wv3.onrender.com/sports`
           );
-        }else{
+        }else if(selectedCategory === 'Top Headlines'){
+          response = await axios.get(
+            'https://news-api-5wv3.onrender.com/news/national'
+          );
+        }
+        else{
         response = await axios.get(
           `https://api.currentsapi.services/v1/latest-news?apiKey=${apiKey}&language=${selectedLanguage}&country=in&category=${selectedCategory}`
         );
@@ -72,7 +77,7 @@ const News = () => {
     };
   }, [selectedLanguage, selectedCategory]);
 
-  const categories = ['general', 'business', 'entertainment', 'health', 'science', 'sports', 'technology'];
+  const categories = ['Top Headlines', 'business', 'entertainment', 'health', 'science', 'sports', 'technology'];
 
   return (
     <div className="container">
