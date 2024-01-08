@@ -142,9 +142,9 @@ const News = () => {
                     />
                   )}
                   <h3>{article.title}</h3>
-                  <p>{article.description}</p>
+                  <p>{article.description? article.description:article.summary}</p>
                   <a
-                    href={article.url}
+                    href={article.url?article.url:article.link}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
