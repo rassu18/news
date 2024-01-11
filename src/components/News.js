@@ -96,7 +96,7 @@ const News = () => {
 
   return (
     <div className="container">
-      <img src={banner} width='1200px'></img>
+      <img class="container-fluid" src={banner} width='1200px'></img>
       
       <div className="radio-group">
         <label><br></br>
@@ -229,7 +229,17 @@ const News = () => {
 
       </div>
 
-      <NewsFooter />           
+      <div class="container mt-4">
+  <footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About Us</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Contact Us</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Terms And Conditions</a></li>
+    </ul>
+    <p class="text-center text-muted">© Latest Indian News</p>
+  </footer>
+</div>          
 
     </div>
   );
@@ -242,11 +252,6 @@ const Loader = () => (
   </div>
 );
 
-// Define your NewsFooter component
-const NewsFooter = () => (
-  <footer className="news-footer">
-    <p>&copy; 2024 Indian Latest News. All rights reserved.</p>
-  </footer>
-);
+
 
 export default News;
