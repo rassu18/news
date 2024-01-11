@@ -46,13 +46,34 @@ const News = () => {
 
         if (selectedCategory === "sports") {
           response = await axios.get(
-            `https://news-api-5wv3.onrender.com/sports`
+            `https://news-api-5wv3.onrender.com/news/sport`
           );
         } else if (selectedCategory === "Top Headlines") {
           response = await axios.get(
             "https://news-api-5wv3.onrender.com/news/national"
           );
-        } else {
+        }else if (selectedCategory === "business") {
+          response = await axios.get(
+            "https://news-api-5wv3.onrender.com/news/business"
+          );
+        }else if (selectedCategory === "entertainment") {
+          response = await axios.get(
+            "https://news-api-5wv3.onrender.com/news/entertainment"
+          );
+        }else if (selectedCategory === "health") {
+          response = await axios.get(
+            "https://news-api-5wv3.onrender.com/news/health"
+          );
+        }else if (selectedCategory === "science") {
+          response = await axios.get(
+            "https://news-api-5wv3.onrender.com/news/science"
+          );
+        }else if (selectedCategory === "technology") {
+          response = await axios.get(
+            "https://news-api-5wv3.onrender.com/news/tech"
+          );
+        }   
+        else {
           response = await axios.get(
             `https://api.currentsapi.services/v1/latest-news?apiKey=${apiKey}&language=${selectedLanguage}&country=in&category=${selectedCategory}`
           );
