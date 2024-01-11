@@ -150,6 +150,10 @@ h1 {
   cursor: pointer;
 }
 
+.radiobutton{
+  margin-left:10px;
+}
+
 /* Add this style to your existing CSS or create a new CSS file */
 /* Add this style to your existing CSS or create a new CSS file */
 
@@ -221,4 +225,14 @@ h1 {
       width: 35vh;
     }
   }
+
+  .news-footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f8f8; /* Set a background color for the footer */
+    border-top: 1px solid #ddd; /* Add a border at the top for separation */
+    position: sticky;
+    bottom: 0;
+  }
+
 }
