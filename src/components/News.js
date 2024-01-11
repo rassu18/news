@@ -96,7 +96,7 @@ const News = () => {
 
   return (
     <div className="container">
-      <img src={banner} ></img>
+      <img src={banner} width='1200px'></img>
       
       <div className="radio-group">
         <label><br></br>
@@ -153,7 +153,30 @@ const News = () => {
       </div>
       {loading && (
         <div className="loader-overlay">
-          <div className="loader"></div>
+          <div class="spinner-grow text-primary" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-grow text-secondary" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-grow text-success" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-grow text-danger" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-grow text-warning" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-grow text-info" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-grow text-light" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-grow text-dark" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
         </div>
       )}
       <div className="news-container">
