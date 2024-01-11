@@ -1,16 +1,16 @@
 // News.js
 
-import React, { useState, useEffect, useMemo } from 'react';
-import axios from 'axios';
-import './News.css';
-import defaultImage from '../logo.svg';
+import React, { useState, useEffect, useMemo } from "react";
+import axios from "axios";
+import "./News.css";
+import defaultImage from "../logo.svg";
 
 const News = () => {
   const [newsData, setNewsData] = useState({});
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
-  const [selectedCategory, setSelectedCategory] = useState('Top Headlines');
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
+  const [selectedCategory, setSelectedCategory] = useState("Top Headlines");
   const [loading, setLoading] = useState(false); // New state for loader
-  let response = '';
+  let response = "";
 
   const debouncedLanguageChange = useMemo(() => {
     const debounce = (fn, delay) => {
@@ -41,15 +41,15 @@ const News = () => {
       try {
         setLoading(true); // Set loading to true when service call starts
 
-        const apiKey = 'q0uUJXqXuSu1OP4CRJDAdV5w9umpi9U6Oko4uTFxK6BVreek';
+        const apiKey = "q0uUJXqXuSu1OP4CRJDAdV5w9umpi9U6Oko4uTFxK6BVreek";
 
-        if (selectedCategory === 'sports') {
+        if (selectedCategory === "sports") {
           response = await axios.get(
             `https://news-api-5wv3.onrender.com/sports`
           );
-        } else if (selectedCategory === 'Top Headlines') {
+        } else if (selectedCategory === "Top Headlines") {
           response = await axios.get(
-            'https://news-api-5wv3.onrender.com/news/national'
+            "https://news-api-5wv3.onrender.com/news/national"
           );
         } else {
           response = await axios.get(
@@ -60,7 +60,7 @@ const News = () => {
         if (!cancelRequest) {
           const groupedNews = {};
           response.data.news.forEach((article) => {
-            const source = article.title || 'Unknown Source';
+            const source = article.title || "Unknown Source";
             if (!groupedNews[source]) {
               groupedNews[source] = [];
             }
@@ -70,7 +70,7 @@ const News = () => {
           setNewsData(groupedNews);
         }
       } catch (error) {
-        console.error('Error fetching news:', error);
+        console.error("Error fetching news:", error);
       } finally {
         setLoading(false); // Set loading to false when service call completes
       }
@@ -84,13 +84,13 @@ const News = () => {
   }, [selectedLanguage, selectedCategory]);
 
   const categories = [
-    'Top Headlines',
-    'business',
-    'entertainment',
-    'health',
-    'science',
-    'sports',
-    'technology',
+    "Top Headlines",
+    "business",
+    "entertainment",
+    "health",
+    "science",
+    "sports",
+    "technology",
   ];
 
   return (
@@ -100,30 +100,48 @@ const News = () => {
         <label>
           Select Language:
           <input
+            class="form-check-input"
+            value="en"
+            checked={selectedLanguage === "en"}
+            onChange={handleLanguageChange}
+            type="radio"
+            name="flexRadioDefault"
+            id="flexRadioDefault1"
+          />
+          {/* <input
             type="radio"
             value="en"
             checked={selectedLanguage === 'en'}
             onChange={handleLanguageChange}
-          />
+          /> */}
           English
         </label>
         <label>
           <input
+            class="form-check-input"
+            value="hi"
+            checked={selectedLanguage === "hi"}
+            onChange={handleLanguageChange}
+            type="radio"
+            name="flexRadioDefault"
+            id="flexRadioDefault1"
+          />
+          {/* <input
             type="radio"
             value="hi"
             checked={selectedLanguage === 'hi'}
             onChange={handleLanguageChange}
-          />
+          /> */}
           Hindi
         </label>
         {/* Add more radio options as needed */}
       </div>
-      <div className="news-header">
+      <div className="news-header rounded-pill">
         {categories.map((category) => (
           <div
             key={category}
-            className={`header-category ${
-              selectedCategory === category ? 'active' : ''
+            className={`header-category rounded-pill ${
+              selectedCategory === category ? "active" : ""
             }`}
             onClick={() => setSelectedCategory(category)}
           >
@@ -137,19 +155,19 @@ const News = () => {
         </div>
       )}
       <div className="news-container">
-         {/* Display loader if loading is true */}
+        {/* Display loader if loading is true */}
         {Object.keys(newsData).map((source, index) => (
           <React.Fragment key={index}>
             {newsData[source].map((article, articleIndex) => (
-              <div key={articleIndex} className="news-box">
-                <div className="news-content">
+              <div class="col-md-3 p-1">
+                <div key={articleIndex} class="card">
                   {article.image ? (
                     <img
                       src={article.image}
                       alt={article.title}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = 'https://placehold.it/150x150';
+                        e.target.src = "https://placehold.it/150x150";
                       }}
                     />
                   ) : (
@@ -160,17 +178,23 @@ const News = () => {
                       height="100"
                     />
                   )}
-                  <h3>{article.title}</h3>
-                  <p>
-                    {article.description ? article.description : article.summary}
-                  </p>
-                  <a
-                    href={article.url ? article.url : article.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Read More
-                  </a>
+                  <div class="card-body">
+                    <h6 class="card-title">{article.title}</h6>
+                    <p className="news-text">
+                      {article.description
+                        ? article.description
+                        : article.summary}
+                    </p>
+                    <div>
+                      <a
+                        href={article.url ? article.url : article.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Read More
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
