@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import "./News.css";
 import defaultImage from "../logo.svg";
+import banner from "../images/banner.jpg";
 
 const News = () => {
   const [newsData, setNewsData] = useState({});
@@ -95,12 +96,13 @@ const News = () => {
 
   return (
     <div className="container">
-      <h1>Latest News from India</h1>
+      <img src={banner} ></img>
+      
       <div className="radio-group">
-        <label>
-          Select Language:
+        <label><br></br>
+          Select Language: 
           <input
-            class="form-check-input"
+            class="form-check-input radiobutton"
             value="en"
             checked={selectedLanguage === "en"}
             onChange={handleLanguageChange}
@@ -118,7 +120,7 @@ const News = () => {
         </label>
         <label>
           <input
-            class="form-check-input"
+            class="form-check-input radiobutton"
             value="hi"
             checked={selectedLanguage === "hi"}
             onChange={handleLanguageChange}
@@ -200,7 +202,12 @@ const News = () => {
             ))}
           </React.Fragment>
         ))}
+                       
+
       </div>
+
+      <NewsFooter />           
+
     </div>
   );
 };
@@ -210,6 +217,13 @@ const Loader = () => (
   <div className="loader-container">
     <div className="loader"></div>
   </div>
+);
+
+// Define your NewsFooter component
+const NewsFooter = () => (
+  <footer className="news-footer">
+    <p>&copy; 2024 Indian Latest News. All rights reserved.</p>
+  </footer>
 );
 
 export default News;
