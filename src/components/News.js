@@ -78,7 +78,7 @@ const News = () => {
       }else if(selectedLanguage === 'hi'){
         if (selectedCategory === "sports") {
           response = await axios.get(
-            `https://news-api-5wv3.onrender.com/news/sport`
+            `https://news-api-5wv3.onrender.com/news/hisport`
           );
         } else if (selectedCategory === "Top Headlines") {
           response = await axios.get(
@@ -86,23 +86,23 @@ const News = () => {
           );
         } else if (selectedCategory === "business") {
           response = await axios.get(
-            "https://news-api-5wv3.onrender.com/news/business"
+            "https://news-api-5wv3.onrender.com/news/hibusiness"
           );
         } else if (selectedCategory === "entertainment") {
           response = await axios.get(
-            "https://news-api-5wv3.onrender.com/news/entertainment"
+            "https://news-api-5wv3.onrender.com/news/hientertainment"
           );
         } else if (selectedCategory === "health") {
           response = await axios.get(
-            "https://news-api-5wv3.onrender.com/news/health"
+            "https://news-api-5wv3.onrender.com/news/hihealth"
           );
         } else if (selectedCategory === "science") {
           response = await axios.get(
-            "https://news-api-5wv3.onrender.com/news/science"
+            "https://news-api-5wv3.onrender.com/news/hiscience"
           );
         } else if (selectedCategory === "technology") {
           response = await axios.get(
-            "https://news-api-5wv3.onrender.com/news/tech"
+            "https://news-api-5wv3.onrender.com/news/hitech"
           );
         }
       }
