@@ -52,6 +52,7 @@ h1 {
   -webkit-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: 700;
 }
 
 .news-text{
