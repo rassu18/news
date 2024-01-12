@@ -44,6 +44,8 @@ const News = () => {
 
         const apiKey = "q0uUJXqXuSu1OP4CRJDAdV5w9umpi9U6Oko4uTFxK6BVreek";
 
+        if(selectedLanguage === 'en'){
+
         if (selectedCategory === "sports") {
           response = await axios.get(
             `https://news-api-5wv3.onrender.com/news/sport`
@@ -52,32 +54,58 @@ const News = () => {
           response = await axios.get(
             "https://news-api-5wv3.onrender.com/news/national"
           );
-        }else if (selectedCategory === "business") {
+        } else if (selectedCategory === "business") {
           response = await axios.get(
             "https://news-api-5wv3.onrender.com/news/business"
           );
-        }else if (selectedCategory === "entertainment") {
+        } else if (selectedCategory === "entertainment") {
           response = await axios.get(
             "https://news-api-5wv3.onrender.com/news/entertainment"
           );
-        }else if (selectedCategory === "health") {
+        } else if (selectedCategory === "health") {
           response = await axios.get(
             "https://news-api-5wv3.onrender.com/news/health"
           );
-        }else if (selectedCategory === "science") {
+        } else if (selectedCategory === "science") {
           response = await axios.get(
             "https://news-api-5wv3.onrender.com/news/science"
           );
-        }else if (selectedCategory === "technology") {
+        } else if (selectedCategory === "technology") {
           response = await axios.get(
             "https://news-api-5wv3.onrender.com/news/tech"
           );
-        }   
-        else {
+        } 
+      }else if(selectedLanguage === 'hi'){
+        if (selectedCategory === "sports") {
           response = await axios.get(
-            `https://api.currentsapi.services/v1/latest-news?apiKey=${apiKey}&language=${selectedLanguage}&country=in&category=${selectedCategory}`
+            `https://news-api-5wv3.onrender.com/news/sport`
+          );
+        } else if (selectedCategory === "Top Headlines") {
+          response = await axios.get(
+            "https://news-api-5wv3.onrender.com/news/hinational"
+          );
+        } else if (selectedCategory === "business") {
+          response = await axios.get(
+            "https://news-api-5wv3.onrender.com/news/business"
+          );
+        } else if (selectedCategory === "entertainment") {
+          response = await axios.get(
+            "https://news-api-5wv3.onrender.com/news/entertainment"
+          );
+        } else if (selectedCategory === "health") {
+          response = await axios.get(
+            "https://news-api-5wv3.onrender.com/news/health"
+          );
+        } else if (selectedCategory === "science") {
+          response = await axios.get(
+            "https://news-api-5wv3.onrender.com/news/science"
+          );
+        } else if (selectedCategory === "technology") {
+          response = await axios.get(
+            "https://news-api-5wv3.onrender.com/news/tech"
           );
         }
+      }
 
         if (!cancelRequest) {
           const groupedNews = {};
@@ -115,13 +143,41 @@ const News = () => {
     "technology",
   ];
 
+  // Add the scroll behavior code here
+  useEffect(() => {
+    const scrollButton = document.getElementById("scroll-to-top");
+
+    const handleScroll = () => {
+      if (document.body.scrollTop > document.body.clientHeight * 2 || document.documentElement.scrollTop > document.documentElement.clientHeight * 2) {
+        scrollButton.style.display = "block";
+      } else {
+        scrollButton.style.display = "none";
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  
+
   return (
     <div className="container">
-      <img class="container-fluid" src={banner} width='1200px'></img>
-      
+      <img class="container-fluid" src={banner} width="1200px"></img>
+
       <div className="radio-group">
-        <label><br></br>
-          Select Language: 
+        <label>
+          <br></br>
+          Select Language:
           <input
             class="form-check-input radiobutton"
             value="en"
@@ -175,29 +231,29 @@ const News = () => {
       {loading && (
         <div className="loader-overlay">
           <div class="spinner-grow text-primary" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
-<div class="spinner-grow text-secondary" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
-<div class="spinner-grow text-success" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
-<div class="spinner-grow text-danger" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
-<div class="spinner-grow text-warning" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
-<div class="spinner-grow text-info" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
-<div class="spinner-grow text-light" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
-<div class="spinner-grow text-dark" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-secondary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-danger" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-warning" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-info" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-dark" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
         </div>
       )}
       <div className="news-container">
@@ -211,7 +267,7 @@ const News = () => {
                     <img
                       src={article.image}
                       alt={article.title}
-                      height='180vh'
+                      height="180vh"
                       onError={(e) => {
                         e.target.onerror = null;
                         e.target.src = "https://placehold.it/150x150";
@@ -247,22 +303,39 @@ const News = () => {
             ))}
           </React.Fragment>
         ))}
-                       
-
       </div>
 
       <div class="container mt-4">
-  <footer class="py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About Us</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Contact Us</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Terms And Conditions</a></li>
-    </ul>
-    <p class="text-center text-muted">© Latest Indian News</p>
-  </footer>
-</div>          
-
+        <footer class="py-3 my-4">
+          <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-muted">
+                Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-muted">
+                About Us
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-muted">
+                Contact Us
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-muted">
+                Terms And Conditions
+              </a>
+            </li>
+          </ul>
+          <p class="text-center text-muted">© Latest Indian News</p>
+        </footer>
+      </div>
+          {/* Add the "Go To Top" button */}
+    <div id="scroll-to-top" title="Go To Top" onClick={scrollToTop}>
+      <i className="fas fa-arrow-up"></i>
+    </div>
     </div>
   );
 };
@@ -273,7 +346,5 @@ const Loader = () => (
     <div className="loader"></div>
   </div>
 );
-
-
 
 export default News;
