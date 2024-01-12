@@ -64,6 +64,14 @@ h1 {
 
 .card{
   min-height: 200px;
+  background-color: #fff;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+
+  transition: transform .2s;
+}
+
+.card:hover{
+  transform: scale(1.1);
 }
 
 .news-content {
@@ -150,6 +158,12 @@ h1 {
   cursor: pointer;
 }
 
+.container-fluid img {
+  width: 100%;
+  height: auto;
+}
+
+
 .radiobutton{
   margin-left:10px;
 }
@@ -208,14 +222,12 @@ h1 {
 
   .news-container {
     flex-direction: column;
-
-    
+    margin-left: 0;
   }
 
   .news-box {
-    width: 100%;
-
-    padding-top: 100%;
+    width: calc(50% - 20px);
+    padding-top: calc(50% - 20px);
   }
 
   .news-content {
