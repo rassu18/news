@@ -211,7 +211,7 @@ const News = () => {
                     <img
                       src={article.image}
                       alt={article.title}
-                      height='180px'
+                      height='180vh'
                       onError={(e) => {
                         e.target.onerror = null;
                         e.target.src = "https://placehold.it/150x150";
