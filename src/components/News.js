@@ -215,7 +215,7 @@ const News = () => {
         </label>
         {/* Add more radio options as needed */}
       </div>
-      <div className="news-header rounded-pill">
+      <div className="news-header">
         {categories.map((category) => (
           <div
             key={category}
