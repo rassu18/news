@@ -1,14 +1,12 @@
-/* src/components/News.css */
+/* News.css */
 
 .container {
   margin: auto;
-
   padding: 20px;
 }
 
 h1 {
   text-align: center;
-
   color: #333;
 }
 
@@ -18,9 +16,7 @@ h1 {
 
 .news-container {
   display: flex;
-
   flex-wrap: wrap;
-
   justify-content: space-between;
 }
 
@@ -98,15 +94,20 @@ h1 {
 }
 
 .news-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
   margin-top: 30px;
-  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)); /* Darker gradient for enhanced shine */
+  /* background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)); */
+  background-color: black;
   padding: 10px 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Increased box shadow for depth */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
 
 /* Updated Header Category Styles */
 
@@ -201,25 +202,64 @@ h1 {
   100% { transform: rotate(360deg); }
 }
 
+/* Desktop view styles */
 
+@media (min-width: 768px) {
+  .news-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .desktop-categories {
+    display: flex;
+  }
+
+  .mobile-categories {
+    display: none;
+  }
+}
 
 
 /* Mobile view styles */
 
 @media (max-width: 767.98px) {
   .news-header {
-    display: flow-root;
-
-    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 5vh;
   }
 
-  .header-category {
-    margin-bottom: 10px;
+  .desktop-categories {
+    display: none; /* Hide desktop categories in mobile view */
   }
 
-  .hamburger-menu {
-    display: block;
+  .mobile-categories {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+
+  .mobile-dropdown {
+    display: ${showMobileMenu ? "flex" : "none"};
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 101;
+  }
+
+  .mobile-dropdown .header-category {
+    padding: 10px 20px;
+  }
+
 
   .news-container {
     flex-direction: column;
@@ -248,4 +288,22 @@ h1 {
     bottom: 0;
   }
 
+  #scroll-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+
+  #scroll-to-top:hover {
+    background-color: #2980b9;
+  }
 }
