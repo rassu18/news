@@ -231,8 +231,8 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    height: 5vh;
+    flex-direction: row;
+    height: auto;
   }
 
   .desktop-categories {
@@ -242,7 +242,7 @@ h1 {
   .mobile-categories {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
   }
 
   .mobile-dropdown {
@@ -256,6 +256,7 @@ h1 {
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 101;
+    margin-top: 2px;
   }
 
   .mobile-dropdown .header-category {
@@ -307,4 +308,39 @@ h1 {
   #scroll-to-top:hover {
     background-color: #2980b9;
   }
+
+  /* Add this style for hamburger symbol in mobile view */
+/* Add this style for hamburger symbol in mobile view */
+.hamburger-icon {
+  z-index: 101; /* Ensure the hamburger menu is above other elements */
+  flex-direction: column;
+  cursor: pointer;
+  font-size: 24px;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.hamburger-icon span {
+  height: 3px;
+  width: 25px;
+  background-color: #fff;
+  margin: 6px 0;
+  display: block;
+  border-radius: 3px;
+  transition: 0.4s;
+}
+
+.hamburger-icon.active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger-icon.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+
 }
