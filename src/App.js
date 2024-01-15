@@ -1,14 +1,22 @@
-// src/App.js
-import React from 'react';
-import './App.css';
-import News from './components/News';
+// App.js
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import News from "./components/News";
+import AboutUs from "./footer/AboutUs";
+import ContactUs from "./footer/ContactUsForm";
+//import TermsConditions from "./TermsConditions";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <News />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<News />} />
+        <Route path="/about" element={<AboutUs />} />
+         <Route path="/contact" element={<ContactUs />} />
+       {/* <Route path="/terms" element={<TermsConditions />} /> */}
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
