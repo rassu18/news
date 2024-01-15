@@ -5,6 +5,8 @@ import axios from "axios";
 import "./News.css";
 import defaultImage from "../logo.svg";
 import banner from "../images/banner.jpg";
+import { Link } from "react-router-dom";
+
 
 const News = () => {
   const [newsData, setNewsData] = useState({});
@@ -177,6 +179,7 @@ const News = () => {
   return (
     <div className="container">
       <img className="container-fluid" src={banner} width="1200px" alt="Banner" />
+      <div className="center-container">
 
       <div className="radio-group">
         <label>
@@ -205,6 +208,7 @@ const News = () => {
           />
           Hindi
         </label>
+        </div>
       </div>
 
       <div className="news-header">
@@ -343,22 +347,34 @@ const News = () => {
         <footer className="py-3 my-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li class="nav-item">
-              <a href="#" class="nav-link px-2 text-muted">
+              {/* <a href="#" class="nav-link px-2 text-muted">
                 Home
-              </a>
+              </a> */}
+
+              <Link to="/" className="nav-link px-2 text-muted">
+              Home
+            </Link>
+
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link px-2 text-muted">
+              {/* <a href="#about" class="nav-link px-2 text-muted">
                 About Us
-              </a>
+              </a> */}
+              <Link to="/about" className="nav-link px-2 text-muted">
+              About Us
+            </Link>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link px-2 text-muted">
+              {/* <a href="#contact" class="nav-link px-2 text-muted">
                 Contact Us
-              </a>
+              </a> */}
+              <Link to="/contact" className="nav-link px-2 text-muted">
+              Contact Us
+            </Link>
+
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link px-2 text-muted">
+              <a href="#terms" class="nav-link px-2 text-muted">
                 Terms And Conditions
               </a>
             </li>
@@ -375,10 +391,10 @@ const News = () => {
 };
 
 // Loader component
-const Loader = () => (
-  <div className="loader-container">
-    <div className="loader"></div>
-  </div>
-);
+// const Loader = () => (
+//   <div className="loader-container">
+//     <div className="loader"></div>
+//   </div>
+// );
 
 export default News;
