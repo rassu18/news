@@ -168,6 +168,18 @@ h1 {
 
 .radiobutton{
   margin-left:10px;
+  margin-right: 4px;
+}
+
+.center-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Optional: Set the height to 100% of the viewport height */
+}
+
+.radio-group{
+  /* display: ruby-text; */
 }
 
 /* Add this style to your existing CSS or create a new CSS file */
