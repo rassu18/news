@@ -10,7 +10,8 @@ const News = () => {
   const [newsData, setNewsData] = useState({});
   const [selectedLanguage, setSelectedLanguage] = useState("en");
   const [selectedCategory, setSelectedCategory] = useState("Top Headlines");
-  const [loading, setLoading] = useState(false); // New state for loader
+  const [loading, setLoading] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   let response = "";
 
   const debouncedLanguageChange = useMemo(() => {
@@ -40,89 +41,91 @@ const News = () => {
 
     const fetchNews = async () => {
       try {
-        setLoading(true); // Set loading to true when service call starts
+        setLoading(true);
 
         const apiKey = "q0uUJXqXuSu1OP4CRJDAdV5w9umpi9U6Oko4uTFxK6BVreek";
 
         if(selectedLanguage === 'en'){
 
-        if (selectedCategory === "sports") {
-          response = await axios.get(
-            `https://news-api-5wv3.onrender.com/news/sport`
-          );
-        } else if (selectedCategory === "Top Headlines") {
-          response = await axios.get(
-            "https://news-api-5wv3.onrender.com/news/national"
-          );
-        } else if (selectedCategory === "business") {
-          response = await axios.get(
-            "https://news-api-5wv3.onrender.com/news/business"
-          );
-        } else if (selectedCategory === "entertainment") {
-          response = await axios.get(
-            "https://news-api-5wv3.onrender.com/news/entertainment"
-          );
-        } else if (selectedCategory === "health") {
-          response = await axios.get(
-            "https://news-api-5wv3.onrender.com/news/health"
-          );
-        } else if (selectedCategory === "science") {
-          response = await axios.get(
-            "https://news-api-5wv3.onrender.com/news/science"
-          );
-        } else if (selectedCategory === "technology") {
-          response = await axios.get(
-            "https://news-api-5wv3.onrender.com/news/tech"
-          );
-        } 
-      }else if(selectedLanguage === 'hi'){
-        if (selectedCategory === "sports") {
-          response = await axios.get(
-            `https://news-api-5wv3.onrender.com/news/hisport`
-          );
-        } else if (selectedCategory === "Top Headlines") {
-          response = await axios.get(
-            "https://news-api-5wv3.onrender.com/news/hinational"
-          );
-        } else if (selectedCategory === "business") {
-          response = await axios.get(
-            "https://news-api-5wv3.onrender.com/news/hibusiness"
-          );
-        } else if (selectedCategory === "entertainment") {
-          response = await axios.get(
-            "https://news-api-5wv3.onrender.com/news/hientertainment"
-          );
-        } else if (selectedCategory === "health") {
-          response = await axios.get(
-            "https://news-api-5wv3.onrender.com/news/hihealth"
-          );
-        } else if (selectedCategory === "science") {
-          response = await axios.get(
-            "https://news-api-5wv3.onrender.com/news/hiscience"
-          );
-        } else if (selectedCategory === "technology") {
-          response = await axios.get(
-            "https://news-api-5wv3.onrender.com/news/hitech"
-          );
+          if (selectedCategory === "sports") {
+            response = await axios.get(
+              `https://news-api-5wv3.onrender.com/news/sport`
+            );
+          } else if (selectedCategory === "Top Headlines") {
+            response = await axios.get(
+              "https://news-api-5wv3.onrender.com/news/national"
+            );
+          } else if (selectedCategory === "business") {
+            response = await axios.get(
+              "https://news-api-5wv3.onrender.com/news/business"
+            );
+          } else if (selectedCategory === "entertainment") {
+            response = await axios.get(
+              "https://news-api-5wv3.onrender.com/news/entertainment"
+            );
+          } else if (selectedCategory === "health") {
+            response = await axios.get(
+              "https://news-api-5wv3.onrender.com/news/health"
+            );
+          } else if (selectedCategory === "science") {
+            response = await axios.get(
+              "https://news-api-5wv3.onrender.com/news/science"
+            );
+          } else if (selectedCategory === "technology") {
+            response = await axios.get(
+              "https://news-api-5wv3.onrender.com/news/tech"
+            );
+          } 
+        }else if(selectedLanguage === 'hi'){
+          if (selectedCategory === "sports") {
+            response = await axios.get(
+              `https://news-api-5wv3.onrender.com/news/hisport`
+            );
+          } else if (selectedCategory === "Top Headlines") {
+            response = await axios.get(
+              "https://news-api-5wv3.onrender.com/news/hinational"
+            );
+          } else if (selectedCategory === "business") {
+            response = await axios.get(
+              "https://news-api-5wv3.onrender.com/news/hibusiness"
+            );
+          } else if (selectedCategory === "entertainment") {
+            response = await axios.get(
+              "https://news-api-5wv3.onrender.com/news/hientertainment"
+            );
+          } else if (selectedCategory === "health") {
+            response = await axios.get(
+              "https://news-api-5wv3.onrender.com/news/hihealth"
+            );
+          } else if (selectedCategory === "science") {
+            response = await axios.get(
+              "https://news-api-5wv3.onrender.com/news/hiscience"
+            );
+          } else if (selectedCategory === "technology") {
+            response = await axios.get(
+              "https://news-api-5wv3.onrender.com/news/hitech"
+            );
+          }
         }
-      }
+  
+          if (!cancelRequest) {
+            const groupedNews = {};
+            response.data.news.forEach((article) => {
+              const source = article.title || "Unknown Source";
+              if (!groupedNews[source]) {
+                groupedNews[source] = [];
+              }
+              groupedNews[source].push(article);
+            });
+  
+            setNewsData(groupedNews);
+          }
 
-        if (!cancelRequest) {
-          const groupedNews = {};
-          response.data.news.forEach((article) => {
-            const source = article.title || "Unknown Source";
-            if (!groupedNews[source]) {
-              groupedNews[source] = [];
-            }
-            groupedNews[source].push(article);
-          });
 
-          setNewsData(groupedNews);
-        }
       } catch (error) {
         console.error("Error fetching news:", error);
       } finally {
-        setLoading(false); // Set loading to false when service call completes
+        setLoading(false);
       }
     };
 
@@ -143,12 +146,14 @@ const News = () => {
     "technology",
   ];
 
-  // Add the scroll behavior code here
   useEffect(() => {
     const scrollButton = document.getElementById("scroll-to-top");
 
     const handleScroll = () => {
-      if (document.body.scrollTop > document.body.clientHeight * 2 || document.documentElement.scrollTop > document.documentElement.clientHeight * 2) {
+      if (
+        document.body.scrollTop > document.body.clientHeight * 2 ||
+        document.documentElement.scrollTop > document.documentElement.clientHeight * 2
+      ) {
         scrollButton.style.display = "block";
       } else {
         scrollButton.style.display = "none";
@@ -168,18 +173,17 @@ const News = () => {
       behavior: "smooth",
     });
   };
-  
 
   return (
     <div className="container">
-      <img class="container-fluid" src={banner} width="1200px"></img>
+      <img className="container-fluid" src={banner} width="1200px" alt="Banner" />
 
       <div className="radio-group">
         <label>
-          <br></br>
+          <br />
           Select Language:
           <input
-            class="form-check-input radiobutton"
+            className="form-check-input radiobutton"
             value="en"
             checked={selectedLanguage === "en"}
             onChange={handleLanguageChange}
@@ -187,47 +191,67 @@ const News = () => {
             name="flexRadioDefault"
             id="flexRadioDefault1"
           />
-          {/* <input
-            type="radio"
-            value="en"
-            checked={selectedLanguage === 'en'}
-            onChange={handleLanguageChange}
-          /> */}
           English
         </label>
         <label>
           <input
-            class="form-check-input radiobutton"
+            className="form-check-input radiobutton"
             value="hi"
             checked={selectedLanguage === "hi"}
             onChange={handleLanguageChange}
             type="radio"
             name="flexRadioDefault"
-            id="flexRadioDefault1"
+            id="flexRadioDefault2"
           />
-          {/* <input
-            type="radio"
-            value="hi"
-            checked={selectedLanguage === 'hi'}
-            onChange={handleLanguageChange}
-          /> */}
           Hindi
         </label>
-        {/* Add more radio options as needed */}
       </div>
+
       <div className="news-header">
-        {categories.map((category) => (
-          <div
-            key={category}
-            className={`header-category rounded-pill ${
-              selectedCategory === category ? "active" : ""
-            }`}
-            onClick={() => setSelectedCategory(category)}
-          >
-            {category.charAt(0).toUpperCase() + category.slice(1)}
+        <div className="header-categories rounded-pill">
+          <div className="desktop-categories">
+            {categories.map((category) => (
+              <div
+                key={category}
+                className={`header-category rounded-pill ${
+                  selectedCategory === category ? "active" : ""
+                }`}
+                onClick={() => setSelectedCategory(category)}
+              >
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </div>
+            ))}
           </div>
-        ))}
+          <div className="mobile-categories rounded-pill">
+            <div
+              className="header-category rounded-pill"
+              onClick={() => setShowMobileMenu(!showMobileMenu)}
+            >
+              {selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}
+              <i className={`fas fa-chevron-${showMobileMenu ? "up" : "down"}`}></i>
+            </div>
+            {showMobileMenu && (
+              <div className="mobile-dropdown">
+                {categories.map((category) => (
+                  <div
+                    key={category}
+                    className={`header-category rounded-pill ${
+                      selectedCategory === category ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      setSelectedCategory(category);
+                      setShowMobileMenu(false);
+                    }}
+                  >
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
+
       {loading && (
         <div className="loader-overlay">
           <div class="spinner-grow text-primary" role="status">
@@ -256,12 +280,12 @@ const News = () => {
           </div>
         </div>
       )}
+
       <div className="news-container">
-        {/* Display loader if loading is true */}
         {Object.keys(newsData).map((source, index) => (
           <React.Fragment key={index}>
             {newsData[source].map((article, articleIndex) => (
-              <div class="col-md-3 p-1">
+              <div className="col-md-3 p-1" key={articleIndex}>
                 <div key={articleIndex} class="card">
                   {article.image ? (
                     <img
@@ -305,9 +329,9 @@ const News = () => {
         ))}
       </div>
 
-      <div class="container mt-4">
-        <footer class="py-3 my-4">
-          <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <div className="container mt-4">
+        <footer className="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li class="nav-item">
               <a href="#" class="nav-link px-2 text-muted">
                 Home
@@ -332,10 +356,10 @@ const News = () => {
           <p class="text-center text-muted">© Latest Indian News</p>
         </footer>
       </div>
-          {/* Add the "Go To Top" button */}
-    <div id="scroll-to-top" title="Go To Top" onClick={scrollToTop}>
-      <i className="fas fa-arrow-up"></i>
-    </div>
+
+      <div id="scroll-to-top" title="Go To Top" onClick={scrollToTop}>
+        <i className="fas fa-arrow-up"></i>
+      </div>
     </div>
   );
 };
