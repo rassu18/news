@@ -138,7 +138,7 @@ h1 {
 
 .header-category:hover,
 .header-category.active {
-  background-color: #333; /* Darker background on hover and when active */
+  background-color: #198754; /* Darker background on hover and when active */
 }
 .header-category.active {
   background-color: #007bff;
@@ -245,21 +245,8 @@ h1 {
     align-items: center;
   }
 
-  /* .mobile-dropdown {
-    display: ${showMobileMenu ? "flex" : "none"};
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 101;
-  } */
-
   .mobile-dropdown {
-    display: ${(showMobileMenu) ? "flex" : "none"};
+    display: flex;
     flex-direction: column;
     position: absolute;
     top: 100%;
