@@ -208,6 +208,16 @@ const News = () => {
       </div>
 
       <div className="news-header">
+
+      <div
+  className={`hamburger-icon ${showMobileMenu ? "active" : ""}`}
+  onClick={() => setShowMobileMenu(!showMobileMenu)}
+>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
         <div className="header-categories rounded-pill">
           <div className="desktop-categories">
             {categories.map((category) => (
