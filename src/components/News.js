@@ -376,9 +376,9 @@ const News = () => {
               </Link>
             </li>
             <li class="nav-item">
-              <a href="#tnc" class="nav-link px-2 text-muted">
-               <b> Terms And Conditions</b>
-              </a>
+            <Link to="/tnc" className="nav-link px-2 text-muted">
+                <b>Terms & Conditions</b>
+              </Link>
             </li>
             <li class="nav-item">
               {/* <a href="#contact" class="nav-link px-2 text-muted">
