@@ -330,7 +330,7 @@ const News = () => {
                         ? article.description
                         : article.summary}
                     </p>
-                    <div>
+                    <div className="center-container">
                       <a
                         href={article.url ? article.url : article.link}
                         target="_blank"
