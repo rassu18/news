@@ -331,6 +331,7 @@ const News = () => {
                         : article.summary}
                     </p>
                     <div className="center-container">
+                      <div className="a">
                       <a
                         href={article.url ? article.url : article.link}
                         target="_blank"
@@ -338,6 +339,7 @@ const News = () => {
                       >
                         Read More
                       </a>
+                      </div>
                     </div>
                   </div>
                 </div>
