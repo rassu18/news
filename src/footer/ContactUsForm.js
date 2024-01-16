@@ -1,108 +1,104 @@
-import React, { useState } from 'react';
-import './ContactUsForm.css'; // Import your CSS file for styling
+import React from "react";
+import { useForm } from "@formspree/react";
+import banner from '../images/banner.jpg';
+function ContactForm() {
+  const [state, handleSubmit] = useForm("xwkgpnze");
+  if (state.succeeded) {
+    return(
+      <div className="container" >
+                  <img className="container-fluid pb-4" src={banner} width="1200px" alt="Banner" />
+                  <b className="help-block text-success pb-4">
+                    <marquee>Thank you for contacting us! We will get back to you soon.</marquee>
+                  </b>
+                  <br />
+                  <b className="position-relative d-flex align-items-center justify-content-center pb-4">Have a nice day!</b>
 
-const ContactUsForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      // Send form data to Formspree
-      const response = await fetch('https://formspree.io/rassu18@gmail.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-
-      if (response.ok) {
-        console.log('Form submitted successfully:', formData);
-        alert('Message sent successfully!');
-        // Optionally, clear the form after successful submission
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
-      } else {
-        console.error('Error submitting form:', response.statusText);
-        alert('Error submitting message. Please try again later.');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('Error submitting message. Please try again later.');
-    }
-  };
-
-  return (
-    <div className="contact-us-container">
-      <h1>Contact Us</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Your Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="email">Your Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="subject">Subject:</label>
-          <input
-            type="text"
-            id="subject"
-            name="subject"
-            value={formData.subject}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="message">Your Message:</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="4"
-            value={formData.message}
-            onChange={handleInputChange}
-            required
-          ></textarea>
-        </div>
-
-        <button type="submit">Submit</button>
-      </form>
+                  <div className="container mt-4">
+      <footer className="py-3 my-4">
+        {/* Footer Menu */}
+        <ul className="nav justify-content-center border-bottom pb-3 mb-3">
+          <li className="nav-item">
+            <a href="/" className="nav-link px-2 text-muted">
+              <b>Home</b>
+            </a>
+          </li>
+          {/* Add more footer menu items as needed */}
+        </ul>
+        
+        {/* Copyright */}
+        <p className="text-center text-muted">© Latest Indian News</p>
+      </footer>
     </div>
-  );
-};
 
-export default ContactUsForm;
+      </div>
+    );
+  }
+  return (
+    
+    <div className="container-fluid">
+          <img className="container-fluid" src={banner} width="1200px" alt="Banner" />
+
+      <div className="container">
+
+        <div className="position-relative d-flex align-items-center justify-content-center">
+          <h1 class='display-1 text-uppercase text-white'>Contact</h1>
+          <h1 class="position-absolute text-uppercase text-primary">
+            Contact Us
+          </h1>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="contact-form text-center">
+              <div id="success"></div>
+              <form onSubmit={handleSubmit}>
+                <div className="form-row">
+                  <div class='control-group col-sm-6'>
+                <input id="email" type="email" name="email" class='form-control p-4' placeholder="Your Email" required='required' data-validation-required-message='Please enter your email'/>
+                <p class='help-block'></p>
+                </div>
+
+                <div class='control-group'>
+                <textarea id="message" name="message" class='form-control py-3 px-4' rows='5' required='required' data-validation-required-message='Please enter your message'/>
+                <p class='help-block'></p>
+                </div>
+
+                <button type="submit" disabled={state.submitting} class='btn btn-outline-primary'>
+                  Submit
+                </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div className="container mt-4">
+      <footer className="py-3 my-4">
+        {/* Footer Menu */}
+        <ul className="nav justify-content-center border-bottom pb-3 mb-3">
+          <li className="nav-item">
+            <a href="/" className="nav-link px-2 text-muted">
+              <b>Home</b>
+            </a>
+          </li>
+          {/* Add more footer menu items as needed */}
+        </ul>
+        
+        {/* Copyright */}
+        <p className="text-center text-muted">© Latest Indian News</p>
+      </footer>
+    </div>
+
+      </div>
+
+      
+
+    </div>
+
+  
+
+  );
+}
+function App() {
+  return <ContactForm />;
+}
+export default App;
