@@ -356,7 +356,7 @@ const News = () => {
               </a> */}
 
               <Link to="/" className="nav-link px-2 text-muted">
-                Home
+               <b> Home</b>
               </Link>
             </li>
             <li class="nav-item">
@@ -364,7 +364,7 @@ const News = () => {
                 About Us
               </a> */}
               <Link to="/about" className="nav-link px-2 text-muted">
-                About Us
+               <b> About Us</b>
               </Link>
             </li>
             <li class="nav-item">
@@ -372,13 +372,29 @@ const News = () => {
                 Contact Us
               </a> */}
               <Link to="/contact" className="nav-link px-2 text-muted">
-                Contact Us
+                <b>Contact Us</b>
               </Link>
             </li>
             <li class="nav-item">
               <a href="#terms" class="nav-link px-2 text-muted">
-                Terms And Conditions
+               <b> Terms And Conditions</b>
               </a>
+            </li>
+            <li class="nav-item">
+              {/* <a href="#contact" class="nav-link px-2 text-muted">
+                Contact Us
+              </a> */}
+              <Link to="/privacy" className="nav-link px-2 text-muted">
+                <b>Privacy</b>
+              </Link>
+            </li>
+            <li class="nav-item">
+              {/* <a href="#contact" class="nav-link px-2 text-muted">
+                Contact Us
+              </a> */}
+              <Link to="/disclaimer" className="nav-link px-2 text-muted">
+               <b> Disclaimer</b>
+              </Link>
             </li>
           </ul>
           <p class="text-center text-muted">© Latest Indian News</p>
