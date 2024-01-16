@@ -7,7 +7,7 @@ import './AboutUs.css'; // Import your CSS file for About Us styles
 const AboutUs = () => (
   <div className='justify'>
     {/* Banner */}
-    <img className="container-fluid" src={banner} width="1200px" alt="Banner" />
+    {/* <img className="container-fluid" src={banner} width="1200px" alt="Banner" /> */}
 
     {/* Disclaimer Content */}
     <div class="about-us-container">
