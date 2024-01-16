@@ -14,5 +14,12 @@
   .about-us-container p {
     margin-bottom: 15px;
     line-height: 1.5;
+    text-align: justify;
   }
+
+  .justify{
+    text-align: justify;
+  }
+
+
   
