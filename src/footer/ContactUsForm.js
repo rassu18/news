@@ -6,7 +6,6 @@ function ContactForm() {
   if (state.succeeded) {
     return(
       <div className="container" >
-                  <img className="container-fluid pb-4" src={banner} width="1200px" alt="Banner" />
                   <b className="help-block text-success pb-4">
                     <marquee>Thank you for contacting us! We will get back to you soon.</marquee>
                   </b>
@@ -36,7 +35,6 @@ function ContactForm() {
   return (
     
     <div className="container-fluid">
-          <img className="container-fluid" src={banner} width="1200px" alt="Banner" />
 
       <div className="container">
 
