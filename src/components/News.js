@@ -175,12 +175,12 @@ const News = () => {
 
   return (
     <div className="container">
-      <img
+      {/* <img
         className="container-fluid"
         src={banner}
         width="1200px"
         alt="Banner"
-      />
+      /> */}
 <div className="center-container">
   <div className="radio-group">
     <label style={{ display: 'inline-block', marginRight: '20px' }}>
@@ -376,7 +376,7 @@ const News = () => {
               </Link>
             </li>
             <li class="nav-item">
-              <a href="#terms" class="nav-link px-2 text-muted">
+              <a href="#tnc" class="nav-link px-2 text-muted">
                <b> Terms And Conditions</b>
               </a>
             </li>
