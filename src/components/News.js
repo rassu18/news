@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const News = () => {
   const [newsData, setNewsData] = useState({});
   const [selectedLanguage, setSelectedLanguage] = useState("en");
-  const [selectedCategory, setSelectedCategory] = useState("Top Headlines");
+  const [selectedCategory, setSelectedCategory] = useState("Trending");
   const [loading, setLoading] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   let response = "";
@@ -51,15 +51,15 @@ const News = () => {
             response = await axios.get(
               `https://news-api-5wv3.onrender.com/news/sport`
             );
-          } else if (selectedCategory === "Top Headlines") {
+          } else if (selectedCategory === "Trending") {
             response = await axios.get(
               "https://news-api-5wv3.onrender.com/news/national"
             );
-          } else if (selectedCategory === "business") {
+          } else if (selectedCategory === "Finance") {
             response = await axios.get(
               "https://news-api-5wv3.onrender.com/news/business"
             );
-          } else if (selectedCategory === "entertainment") {
+          } else if (selectedCategory === "Movies & More") {
             response = await axios.get(
               "https://news-api-5wv3.onrender.com/news/entertainment"
             );
@@ -81,15 +81,15 @@ const News = () => {
             response = await axios.get(
               `https://news-api-5wv3.onrender.com/news/hisport`
             );
-          } else if (selectedCategory === "Top Headlines") {
+          } else if (selectedCategory === "Trending") {
             response = await axios.get(
               "https://news-api-5wv3.onrender.com/news/hinational"
             );
-          } else if (selectedCategory === "business") {
+          } else if (selectedCategory === "Finance") {
             response = await axios.get(
               "https://news-api-5wv3.onrender.com/news/hibusiness"
             );
-          } else if (selectedCategory === "entertainment") {
+          } else if (selectedCategory === "Movies & More") {
             response = await axios.get(
               "https://news-api-5wv3.onrender.com/news/hientertainment"
             );
@@ -135,9 +135,9 @@ const News = () => {
   }, [selectedLanguage, selectedCategory]);
 
   const categories = [
-    "Top Headlines",
-    "business",
-    "entertainment",
+    "Trending",
+    "Finance",
+    "Movies & More",
     "health",
     "science",
     "sports",
