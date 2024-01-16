@@ -7,7 +7,6 @@ import defaultImage from "../logo.svg";
 import banner from "../images/banner.jpg";
 import { Link } from "react-router-dom";
 
-
 const News = () => {
   const [newsData, setNewsData] = useState({});
   const [selectedLanguage, setSelectedLanguage] = useState("en");
@@ -47,8 +46,7 @@ const News = () => {
 
         const apiKey = "q0uUJXqXuSu1OP4CRJDAdV5w9umpi9U6Oko4uTFxK6BVreek";
 
-        if(selectedLanguage === 'en'){
-
+        if (selectedLanguage === "en") {
           if (selectedCategory === "sports") {
             response = await axios.get(
               `https://news-api-5wv3.onrender.com/news/sport`
@@ -77,8 +75,8 @@ const News = () => {
             response = await axios.get(
               "https://news-api-5wv3.onrender.com/news/tech"
             );
-          } 
-        }else if(selectedLanguage === 'hi'){
+          }
+        } else if (selectedLanguage === "hi") {
           if (selectedCategory === "sports") {
             response = await axios.get(
               `https://news-api-5wv3.onrender.com/news/hisport`
@@ -109,21 +107,19 @@ const News = () => {
             );
           }
         }
-  
-          if (!cancelRequest) {
-            const groupedNews = {};
-            response.data.news.forEach((article) => {
-              const source = article.title || "Unknown Source";
-              if (!groupedNews[source]) {
-                groupedNews[source] = [];
-              }
-              groupedNews[source].push(article);
-            });
-  
-            setNewsData(groupedNews);
-          }
 
+        if (!cancelRequest) {
+          const groupedNews = {};
+          response.data.news.forEach((article) => {
+            const source = article.title || "Unknown Source";
+            if (!groupedNews[source]) {
+              groupedNews[source] = [];
+            }
+            groupedNews[source].push(article);
+          });
 
+          setNewsData(groupedNews);
+        }
       } catch (error) {
         console.error("Error fetching news:", error);
       } finally {
@@ -154,7 +150,8 @@ const News = () => {
     const handleScroll = () => {
       if (
         document.body.scrollTop > document.body.clientHeight * 2 ||
-        document.documentElement.scrollTop > document.documentElement.clientHeight * 2
+        document.documentElement.scrollTop >
+          document.documentElement.clientHeight * 2
       ) {
         scrollButton.style.display = "block";
       } else {
@@ -178,49 +175,53 @@ const News = () => {
 
   return (
     <div className="container">
-      <img className="container-fluid" src={banner} width="1200px" alt="Banner" />
-      <div className="center-container">
+      <img
+        className="container-fluid"
+        src={banner}
+        width="1200px"
+        alt="Banner"
+      />
+<div className="center-container">
+  <div className="radio-group">
+    <label style={{ display: 'inline-block', marginRight: '20px' }}>
+      <br />
+      Select Language:
+      <input
+        className="form-check-input radiobutton"
+        value="en"
+        checked={selectedLanguage === "en"}
+        onChange={handleLanguageChange}
+        type="radio"
+        name="flexRadioDefault"
+        id="flexRadioDefault1"
+      />
+      English
+    </label>
+    <label style={{ display: 'inline-block' }}>
+      <input
+        className="form-check-input radiobutton"
+        value="hi"
+        checked={selectedLanguage === "hi"}
+        onChange={handleLanguageChange}
+        type="radio"
+        name="flexRadioDefault"
+        id="flexRadioDefault2"
+      />
+      Hindi
+    </label>
+  </div>
+</div>
 
-      <div className="radio-group">
-        <label>
-          <br />
-          Select Language:
-          <input
-            className="form-check-input radiobutton"
-            value="en"
-            checked={selectedLanguage === "en"}
-            onChange={handleLanguageChange}
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault1"
-          />
-          English
-        </label>
-        <label>
-          <input
-            className="form-check-input radiobutton"
-            value="hi"
-            checked={selectedLanguage === "hi"}
-            onChange={handleLanguageChange}
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault2"
-          />
-          Hindi
-        </label>
-        </div>
-      </div>
 
       <div className="news-header">
-
-      <div
-  className={`hamburger-icon ${showMobileMenu ? "active" : ""}`}
-  onClick={() => setShowMobileMenu(!showMobileMenu)}
->
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
+        <div
+          className={`hamburger-icon ${showMobileMenu ? "active" : ""}`}
+          onClick={() => setShowMobileMenu(!showMobileMenu)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
 
         <div className="header-categories rounded-pill">
           <div className="desktop-categories">
@@ -241,8 +242,11 @@ const News = () => {
               className="header-category rounded-pill"
               onClick={() => setShowMobileMenu(!showMobileMenu)}
             >
-              {selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}
-              <i className={`fas fa-chevron-${showMobileMenu ? "up" : "down"}`}></i>
+              {selectedCategory.charAt(0).toUpperCase() +
+                selectedCategory.slice(1)}
+              <i
+                className={`fas fa-chevron-${showMobileMenu ? "up" : "down"}`}
+              ></i>
             </div>
             {showMobileMenu && (
               <div className="mobile-dropdown">
@@ -345,33 +349,31 @@ const News = () => {
 
       <div className="container mt-4">
         <footer className="py-3 my-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+          <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li class="nav-item">
               {/* <a href="#" class="nav-link px-2 text-muted">
                 Home
               </a> */}
 
               <Link to="/" className="nav-link px-2 text-muted">
-              Home
-            </Link>
-
+                Home
+              </Link>
             </li>
             <li class="nav-item">
               {/* <a href="#about" class="nav-link px-2 text-muted">
                 About Us
               </a> */}
               <Link to="/about" className="nav-link px-2 text-muted">
-              About Us
-            </Link>
+                About Us
+              </Link>
             </li>
             <li class="nav-item">
               {/* <a href="#contact" class="nav-link px-2 text-muted">
                 Contact Us
               </a> */}
               <Link to="/contact" className="nav-link px-2 text-muted">
-              Contact Us
-            </Link>
-
+                Contact Us
+              </Link>
             </li>
             <li class="nav-item">
               <a href="#terms" class="nav-link px-2 text-muted">
