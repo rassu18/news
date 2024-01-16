@@ -78,7 +78,7 @@ function ContactForm() {
              <b>Home</b>
             </a>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <a href="/about" className="nav-link px-2 text-muted">
              <b>About Us</b>
             </a>
@@ -102,7 +102,7 @@ function ContactForm() {
             <a href="/disclaimer" className="nav-link px-2 text-muted">
              <b>Disclaimer</b>
             </a>
-          </li>
+          </li> */}
           {/* Add more footer menu items as needed */}
         </ul>
         
