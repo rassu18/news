@@ -1,9 +1,14 @@
 // AboutUs.js
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import './AboutUs.css'; // Import your CSS file for About Us styles
 
-const AboutUs = () => (
+const AboutUs = () =>{
+    useEffect(() => {
+        // Scroll to the top when the component mounts
+        window.scrollTo(0, 0);
+      }, []);
+    return (
   <div>
     {/* Banner */}
     
@@ -37,7 +42,32 @@ const AboutUs = () => (
         <ul className="nav justify-content-center border-bottom pb-3 mb-3">
           <li className="nav-item">
             <a href="/" className="nav-link px-2 text-muted">
-              <b>Home</b>
+             <b>Home</b>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/about" className="nav-link px-2 text-muted">
+             <b>About Us</b>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/contact" className="nav-link px-2 text-muted">
+             <b>Contact Us</b>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/tnc" className="nav-link px-2 text-muted">
+             <b>Terms & Conditions</b>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/privacy" className="nav-link px-2 text-muted">
+             <b>Privacy Policy</b>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/disclaimer" className="nav-link px-2 text-muted">
+             <b>Disclaimer</b>
             </a>
           </li>
           {/* Add more footer menu items as needed */}
@@ -49,5 +79,6 @@ const AboutUs = () => (
     </div>
   </div>
 );
+};
 
 export default AboutUs;

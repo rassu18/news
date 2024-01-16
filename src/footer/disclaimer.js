@@ -1,10 +1,16 @@
 // AboutUs.js
 
-import React from 'react';
-import banner from '../images/banner.jpg'; // Import your banner image
+import React, { useEffect } from 'react';
 import './AboutUs.css'; // Import your CSS file for About Us styles
 
-const AboutUs = () => (
+const AboutUs = () => {
+
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
+  
+  return(
   <div className='justify'>
     {/* Banner */}
     {/* <img className="container-fluid" src={banner} width="1200px" alt="Banner" /> */}
@@ -47,6 +53,31 @@ is published in good faith and for general information purpose only.    </p>
              <b>Home</b>
             </a>
           </li>
+          <li className="nav-item">
+            <a href="/about" className="nav-link px-2 text-muted">
+             <b>About Us</b>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/contact" className="nav-link px-2 text-muted">
+             <b>Contact Us</b>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/tnc" className="nav-link px-2 text-muted">
+             <b>Terms & Conditions</b>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/privacy" className="nav-link px-2 text-muted">
+             <b>Privacy Policy</b>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/disclaimer" className="nav-link px-2 text-muted">
+             <b>Disclaimer</b>
+            </a>
+          </li>
           {/* Add more footer menu items as needed */}
         </ul>
         
@@ -56,5 +87,6 @@ is published in good faith and for general information purpose only.    </p>
     </div>
   </div>
 );
+  };
 
 export default AboutUs;

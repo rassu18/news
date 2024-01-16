@@ -1,18 +1,20 @@
-// AboutUs.js
-
-import React from 'react';
-import banner from '../images/banner.jpg'; // Import your banner image
+import React, { useEffect } from 'react';
 import './AboutUs.css'; // Import your CSS file for About Us styles
 
-const AboutUs = () => (
-  <div>
-    {/* Banner */}
-    <img className="container-fluid" src={banner} width="1200px" alt="Banner" />
+const AboutUs = () => {
 
-    {/* About Us Content */}
-    <div class="about-us-container">
-    <h1>About Us</h1>
-    <p>
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []); // Empty dependency array ensures it runs only once when the component mounts
+
+  return (
+    <div>
+      {/* About Us Content */}
+      <div className="about-us-container">
+        <h1>About Us</h1>
+        {/* ... (rest of your content) */}
+        <p>
         Welcome to Latest Indian News, your premier destination for staying informed about the latest happenings across the diverse landscape of India. We take pride in being your go-to source for reliable news, providing you with a comprehensive view of the nation's pulse.
     </p>
     <p>
@@ -27,27 +29,52 @@ const AboutUs = () => (
     <p>
         Thank you for choosing Latest Indian News as your trusted news source. Stay informed, stay connected, and embark on a journey with us as we bring you the latest and most relevant news stories from every corner of India.
     </p>
-</div>
+      </div>
 
-
-    {/* Footer */}
-    <div className="container mt-4">
-      <footer className="py-3 my-4">
-        {/* Footer Menu */}
-        <ul className="nav justify-content-center border-bottom pb-3 mb-3">
+      {/* Footer */}
+      <div className="container mt-4">
+        <footer className="py-3 my-4">
+          {/* Footer Menu */}
+          <ul className="nav justify-content-center border-bottom pb-3 mb-3">
           <li className="nav-item">
             <a href="/" className="nav-link px-2 text-muted">
-              Home
+             <b>Home</b>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/about" className="nav-link px-2 text-muted">
+             <b>About Us</b>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/contact" className="nav-link px-2 text-muted">
+             <b>Contact Us</b>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/tnc" className="nav-link px-2 text-muted">
+             <b>Terms & Conditions</b>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/privacy" className="nav-link px-2 text-muted">
+             <b>Privacy Policy</b>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/disclaimer" className="nav-link px-2 text-muted">
+             <b>Disclaimer</b>
             </a>
           </li>
           {/* Add more footer menu items as needed */}
         </ul>
-        
-        {/* Copyright */}
-        <p className="text-center text-muted">© Your News App</p>
-      </footer>
+
+          {/* Copyright */}
+          <p className="text-center text-muted">© Latest Indian News</p>
+        </footer>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default AboutUs;
