@@ -290,14 +290,20 @@ const News = () => {
           <div class="spinner-grow text-info" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
-          <div class="spinner-grow text-light" role="status">
+          {/* <div class="spinner-grow text-light" role="status">
             <span class="visually-hidden">Loading...</span>
-          </div>
+          </div> */}
           <div class="spinner-grow text-dark" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
         </div>
       )}
+
+      <div>
+
+     
+
+      </div>
 
       <div className="news-container">
         {Object.keys(newsData).map((source, index) => (
@@ -323,9 +329,10 @@ const News = () => {
                       height="100"
                     />
                   )}
-                  <div class="card-body">
-                    <h6 class="card-title">{article.title}</h6>
-                    <p className="news-text">
+                  <div className="card-body">
+                    <h6 data-toggle="tooltip" title={article.title} className="card-title">{article.title}</h6>
+                    <p data-toggle="tooltip" title={article.description? article.description
+                        : article.summary} className="news-text">
                       {article.description
                         ? article.description
                         : article.summary}
